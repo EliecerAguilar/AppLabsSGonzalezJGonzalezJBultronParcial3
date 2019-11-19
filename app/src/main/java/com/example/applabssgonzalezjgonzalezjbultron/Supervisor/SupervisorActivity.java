@@ -46,6 +46,7 @@ public class SupervisorActivity extends AppCompatActivity {
         this.Iniciar();
 
     }
+    //
 
     private void Iniciar() {
         txtBusqueda = (TextView) findViewById(R.id.txtBuscarUsuario);
