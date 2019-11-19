@@ -117,6 +117,7 @@ public class VendedorActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(perfil);
         actionBar.setSubtitle(tipoP);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -158,5 +159,19 @@ public class VendedorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("ActionBar","Cerrar");
+        SharedPreferences preSesion = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preSesion.edit();
+        editor.putString("sesion", "0");
+        editor.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
 }

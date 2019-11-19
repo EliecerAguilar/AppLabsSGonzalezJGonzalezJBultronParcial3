@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(se.compareTo("3")== 0)//IR A LAYOUT SUPERVISOR
         {
+            Intent k = new Intent(this,SupervisorActivity.class);
+            startActivity(k);
         }
 
     }

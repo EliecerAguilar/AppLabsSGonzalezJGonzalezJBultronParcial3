@@ -12,7 +12,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.applabssgonzalezjgonzalezjbultron.Adapters.ArticulosAdapters;
@@ -40,9 +43,31 @@ public class CompradorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comprador);
         lstArticulos = (ListView)findViewById(R.id.lst_comprar_articulos);
         this.LoadListViewTemplate();
-
-
         this.barraDeMenu();
+
+
+        lstArticulos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+/*                String opcionSeleccionada = ((Articulos)a.getItemAtPosition(position)).getNombre();
+
+
+                        //((Articulos)a.getItemAtPosition(position)).getNombre();*/
+
+                //Alternativa 2:
+                String opcionSeleccionada =
+                      ((TextView)v.findViewById(R.id.lblNom)).getText().toString();
+
+                Toast.makeText(CompradorActivity.this,"Opción seleccionada: " + opcionSeleccionada, Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     private void LoadListViewTemplate()
@@ -98,6 +123,10 @@ public class CompradorActivity extends AppCompatActivity {
 
     }
 
+    public void Comprar(){
+
+    }
+
     private void barraDeMenu() {
         //Obtener perfil con sesion iniciada
         SharedPreferences prePerfil = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
@@ -107,6 +136,7 @@ public class CompradorActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(perfil);
         actionBar.setSubtitle(tipoP);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -132,4 +162,22 @@ public class CompradorActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("ActionBar","Cerrar");
+        SharedPreferences preSesion = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preSesion.edit();
+        editor.putString("sesion", "0");
+        editor.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+
+
 }

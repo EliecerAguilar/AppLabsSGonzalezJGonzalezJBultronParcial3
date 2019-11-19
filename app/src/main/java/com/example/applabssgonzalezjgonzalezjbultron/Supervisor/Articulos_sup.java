@@ -1,5 +1,5 @@
 package com.example.applabssgonzalezjgonzalezjbultron.Supervisor;
 
-public class Articulos {
+public class Articulos_sup {
 
 }

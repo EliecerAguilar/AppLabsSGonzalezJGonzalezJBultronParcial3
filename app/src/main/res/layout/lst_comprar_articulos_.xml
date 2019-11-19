@@ -9,14 +9,15 @@
         android:layout_width="220px"
         android:layout_height="255px"
         android:src="@drawable/imgnotfound"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Comprar"
         android:layout_marginLeft="320dp"
         android:layout_marginTop="20dp"
-        />
+        android:text="Comprar"
+        android:textStyle="bold"
+        android:visibility="invisible" />
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
