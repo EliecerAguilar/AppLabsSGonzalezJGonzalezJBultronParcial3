@@ -55,14 +55,14 @@ public class SupervisorActivity extends AppCompatActivity {
         spnTipoUsuario();
         spnTipoCampo();
         listUsuariosS = (ListView)findViewById(R.id.ListUsuariosSuper);
-  /*      this.LoadListViewTemplate();
+        this.LoadListViewTemplate();
 
         listUsuariosS.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 String opcionSeleccionada =((Usuarios) a.getItemAtPosition(position)).getNombre();
                 Toast.makeText(SupervisorActivity.this, "Opción seleccionada: " + opcionSeleccionada, Toast.LENGTH_LONG).show();
             }
-        });*/
+        });
 
     }
 
