@@ -73,7 +73,7 @@ public class SupervisorActivity extends AppCompatActivity {
 
         listUsuariosS.setAdapter(adapter);
     }
-
+ //cambios
     private List<Usuarios> ObtenerDatos(){
 
         List<Usuarios> lista = new ArrayList<Usuarios>();
