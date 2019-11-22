@@ -11,27 +11,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="150px">
+        android:layout_margin="40dp">
 
         <TextView
-            android:layout_marginTop="20pt"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Registro de usuario"
             android:textAlignment="center"
-            android:textSize="100px"/>
+            android:textSize="40sp"/>
 
         <EditText
-            android:id="@+id/editUser"
-            android:layout_marginTop="30pt"
+            android:id="@+id/ediNameUser"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de usuario"
+            android:hint="Nombre"
+            android:backgroundTint="#4e9294"/>
+        <EditText
+            android:id="@+id/ediLastNameUser"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido"
             android:backgroundTint="#4e9294"/>
 
         <EditText
+            android:id="@+id/editUser"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:backgroundTint="#4e9294"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+
+        <EditText
             android:id="@+id/editCon"
-            android:layout_marginTop="5pt"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contraseña"
@@ -39,7 +57,7 @@
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_marginTop="5pt"
+            android:layout_marginTop="5dp"
             android:id="@+id/spnOpcion"
             android:layout_height="wrap_content"/>
 
@@ -50,7 +68,7 @@
             android:background="@drawable/estilobotones"
             android:text="Registrarse"
             android:onClick="registrarse"
-            android:layout_marginTop="5pt"/>
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 
 </LinearLayout>

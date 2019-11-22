@@ -13,13 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Supervisor.SupervisorActivity"
-            android:parentActivityName=".Login.MainActivity">
-        </activity>
-
-        <activity android:name=".Comprador.CompradorActivity"
-            android:parentActivityName=".Login.MainActivity"/>
-
+        <activity android:name=".Supervisor.UsuarioComprasRegActivity"
+            android:parentActivityName=".Supervisor.SupervisorActivity"></activity>
+        <activity
+            android:name=".Supervisor.SupervisorActivity"
+            android:parentActivityName=".Login.MainActivity"></activity>
+        <activity
+            android:name=".Comprador.CompradorActivity"
+            android:parentActivityName=".Login.MainActivity" />
         <activity
             android:name=".Login.MainActivity"
             android:noHistory="true"
@@ -30,8 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Vendedor.VendedorActivity"
-            android:parentActivityName=".Login.MainActivity"/>
+        <activity
+            android:name=".Vendedor.VendedorActivity"
+            android:parentActivityName=".Login.MainActivity" />
         <activity
             android:name=".Vendedor.ActualizarArticulosActivity"
             android:parentActivityName=".Vendedor.VendedorActivity" />

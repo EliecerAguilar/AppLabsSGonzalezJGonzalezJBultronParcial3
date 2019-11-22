@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class datosHelper extends SQLiteOpenHelper {
 
-    String queryCreate = "CREATE TABLE usuariosR(nombre TEXT PRIMARY KEY, contra TEXT, tipo TEXT)";
+    String queryCreate = "CREATE TABLE usuariosR(email TEXT PRIMARY KEY, contra TEXT, tipo TEXT,nombre TEXT,apellido TEXT )";
 
     public datosHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

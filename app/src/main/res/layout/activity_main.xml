@@ -13,27 +13,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="150px">
+        android:layout_margin="50dp">
 
         <TextView
-            android:layout_marginTop="45pt"
+            android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Inicio de sesión"
             android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
             android:textSize="100px"/>
 
         <EditText
             android:id="@+id/editUsuario"
-            android:layout_marginTop="30pt"
+            android:layout_marginTop="90dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de usuario"
+            android:hint="Email"
             android:backgroundTint="#4e9294"/>
 
         <EditText
             android:id="@+id/editPass"
-            android:layout_marginTop="5pt"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contraseña"
@@ -47,7 +48,7 @@
             android:background="@drawable/estilobotones"
             android:text="Iniciar sesión"
             android:onClick="irAlPerfil"
-            android:layout_marginTop="20pt"/>
+            android:layout_marginTop="15dp"/>
 
         <Button
             android:layout_width="match_parent"
@@ -56,7 +57,7 @@
             android:background="@drawable/estilobotones"
             android:text="Registrarse"
             android:onClick="registrarse"
-            android:layout_marginTop="10pt"/>
+            android:layout_marginTop="15dp"/>
     </LinearLayout>
 </ScrollView>
 

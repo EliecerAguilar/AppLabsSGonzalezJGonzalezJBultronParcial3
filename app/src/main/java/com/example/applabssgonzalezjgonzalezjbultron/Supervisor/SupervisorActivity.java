@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,8 +60,11 @@ public class SupervisorActivity extends AppCompatActivity {
 
         listUsuariosS.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                String opcionSeleccionada =((Usuarios) a.getItemAtPosition(position)).getNombre();
-                Toast.makeText(SupervisorActivity.this, "Opción seleccionada: " + opcionSeleccionada, Toast.LENGTH_LONG).show();
+                String idEmailUsr =((Usuarios) a.getItemAtPosition(position)).getEmail();
+                //Toast.makeText(SupervisorActivity.this, "Opción seleccionada: " + opcionSeleccionada, Toast.LENGTH_LONG).show();
+
+
+
             }
         });
 
@@ -92,8 +96,10 @@ public class SupervisorActivity extends AppCompatActivity {
                 if (cursor.moveToFirst()){
                     do {
                         usr = new Usuarios(); //INSERTA LOS DATOS EN LA LISTA
-                        usr.setNombre(cursor.getString(0));
-                        usr.setTipo(cursor.getString(1));
+                        usr.setEmail(cursor.getString(0));
+                        usr.setTipo(cursor.getString(2));
+                        usr.setNombre(cursor.getString(3));
+                        usr.setApellido(cursor.getString(4));
                         lista.add(usr);
 
                     }while (cursor.moveToNext());
@@ -111,8 +117,9 @@ public class SupervisorActivity extends AppCompatActivity {
 
     private void spnTipoUsuario() {
         List<String>spn = new ArrayList<>();
-        spn.add("ID");
-        spn.add("Nombre");
+        spn.add("tipo de campo");
+        spn.add("email");
+        spn.add("nombre");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,spn);
         spnParam.setAdapter(adapter);
 
@@ -124,13 +131,65 @@ public class SupervisorActivity extends AppCompatActivity {
         Spn_op.add("tipo de ususario");
         Spn_op.add("Comprador");
         Spn_op.add("Vendedor");
-        Spn_op.add("Todos");
 
         //adaptador de los valores del arrayList a la spinner
         ArrayAdapter<String> AdapterList1 =new ArrayAdapter<>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,Spn_op);
         //envio del apadatador al spinner
         spnTipoUser.setAdapter(AdapterList1);
     }
+
+
+public void BuscarUsuario(){
+
+        String opcCampo = spnParam.getSelectedItem().toString();
+        int opcTipoUser =spnTipoUser.getSelectedItemPosition();
+
+        if(opcCampo.trim().equals("tipo de campo")){
+            Toast.makeText(getApplicationContext(),"escoga un el tipo de campo para buscar",Toast.LENGTH_LONG).show();
+
+        }
+        else
+            if (opcTipoUser == 0){
+                Toast.makeText(getApplicationContext(),"escoga un el tipo de Usuario para buscar",Toast.LENGTH_LONG).show();
+            }
+            else{
+                datosHelper userDB = new datosHelper(this, "Usuarios", null, 1);
+                SQLiteDatabase db = userDB.getReadableDatabase();
+
+                String txtbuscar = txtBusqueda.getText().toString();
+
+                if (db != null){
+                    Cursor cursor = db.rawQuery("SELECT * FROM usuariosR WHERE "+opcCampo+" LIKE '"+txtbuscar+"' AND tipo LIKE '"+opcTipoUser+"'",null);
+                            List<Usuarios> lista = new ArrayList<Usuarios>();
+                            Usuarios usr = null;
+                            if (cursor.moveToFirst()){
+                                do {
+                                    usr = new Usuarios(); //INSERTA LOS DATOS EN LA LISTA
+                                    usr.setEmail(cursor.getString(0));
+                                    usr.setTipo(cursor.getString(2));
+                                    usr.setNombre(cursor.getString(3));
+                                    usr.setApellido(cursor.getString(4));
+                                    lista.add(usr);
+
+                                }while (cursor.moveToNext());
+                            }
+
+                            UsuarioAdapterView adapter = new UsuarioAdapterView(this, lista);
+                            listUsuariosS.setAdapter(adapter);
+
+                            cursor.close();
+
+                    }
+                db.close();
+
+                }
+
+
+
+        }
+
+
+
 
     private void barraDeMenu() {
         //Obtener perfil con sesion iniciada

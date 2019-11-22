@@ -26,11 +26,17 @@ public class UsuarioAdapterView extends ArrayAdapter<Usuarios> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View item = inflater.inflate(R.layout.adapter_list_usuario, null);
 
+        TextView txtEmail = (TextView)item.findViewById(R.id.txtEmailUsr);
+        txtEmail.setText(opciones.get(position).getNombre());
+
         TextView txtNombre = (TextView)item.findViewById(R.id.txtNombreUsr);
         txtNombre.setText(opciones.get(position).getNombre());
 
         TextView txtTipo = (TextView)item.findViewById(R.id.txtTipoUsr);
         txtTipo.setText("Id: "+opciones.get(position).getTipo());
+
+        TextView txtApellido= (TextView)item.findViewById(R.id.txtApellidoUsr);
+        txtApellido.setText("Id: "+opciones.get(position).getTipo());
 
         return(item);
     }

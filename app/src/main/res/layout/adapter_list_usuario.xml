@@ -6,13 +6,38 @@
 
 
     <TextView
-        android:id="@+id/txtNombreUsr"
+        android:id="@+id/txtEmailUsr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/strBuscarUser"
+        android:text="Email"
         android:textSize="14sp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
+
+        />
+
+    <TextView
+        android:id="@+id/txtNombreUsr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/txtEmailUsr"
+
+        />
+
+
+    <TextView
+        android:id="@+id/txtApellidoUsr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apellido"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/txtNombreUsr"
 
         />
 
@@ -22,7 +47,7 @@
         android:layout_height="wrap_content"
         android:text="@string/strSPNtipoUser"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/txtNombreUsr"
+        android:layout_below="@id/txtApellidoUsr"
         android:layout_marginLeft="10dp"
         />
 </RelativeLayout>

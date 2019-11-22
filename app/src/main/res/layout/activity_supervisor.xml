@@ -49,6 +49,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/estilobotones"
+        android:onClick="BuscarUsuario"
         />
 
     <ListView

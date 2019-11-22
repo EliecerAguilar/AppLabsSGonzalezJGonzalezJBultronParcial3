@@ -24,9 +24,11 @@ public class MainActivity extends AppCompatActivity {
     EditText txtPass;
     String nombreU;
     String contra;
-    String nom;
+    String email;
     String con;
     String tipo;
+    String name;
+    String apellido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,25 +41,27 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preSesion = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         String se = preSesion.getString("sesion","0");
 
-        if(se.compareTo("0")== 0)
-        {
+        if(se.compareTo("0")== 0){
             Toast.makeText(this, "Por favor inicie sesión!", Toast.LENGTH_SHORT).show();
         }
-        else if(se.compareTo("1")== 0)//IR A LAYOUT VENDEDOR
-        {
-            Intent i = new Intent(this, VendedorActivity.class);
-            startActivity(i);
-        }
-        else if(se.compareTo("2")== 0)//IR A LAYOUT COMPRADOR
-        {
-            Intent j =new Intent(this, CompradorActivity.class);
-            startActivity(j);
-        }
-        else if(se.compareTo("3")== 0)//IR A LAYOUT SUPERVISOR
-        {
-            Intent k = new Intent(this,SupervisorActivity.class);
-            startActivity(k);
-        }
+        else
+            if(se.compareTo("1")== 0)//IR A LAYOUT VENDEDOR
+            {
+                Intent i = new Intent(this, VendedorActivity.class);
+                startActivity(i);
+            }
+            else
+                if(se.compareTo("2")== 0)//IR A LAYOUT COMPRADOR
+                {
+                    Intent j =new Intent(this, CompradorActivity.class);
+                    startActivity(j);
+                }
+                else
+                    if(se.compareTo("3")== 0)//IR A LAYOUT SUPERVISOR
+                {
+                    Intent k = new Intent(this,SupervisorActivity.class);
+                    startActivity(k);
+                }
 
     }
 
@@ -74,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
     public void irAlPerfil(View view) {
 
             //ACTIVAR BASE DE DATOS
-            datosHelper userDB = new datosHelper(this, "Usuarios", null, 1);
-            SQLiteDatabase db = userDB.getWritableDatabase();
+        datosHelper userDB = new datosHelper(this, "Usuarios", null, 1);
+        SQLiteDatabase db = userDB.getWritableDatabase();
 
             nombreU = txtUsuario.getText().toString();
             contra = txtPass.getText().toString();
@@ -83,22 +87,25 @@ public class MainActivity extends AppCompatActivity {
             if (db != null) {
 
                 //OBTENER LOS DATOS DE LA TABLA USUARIOS CORRESPONDIENTES AL USUARIO INGRESADO
-                Cursor cursor = db.rawQuery("SELECT * FROM usuariosR WHERE nombre = '" + nombreU + "'", null);
+                Cursor cursor = db.rawQuery("SELECT * FROM usuariosR WHERE email = '" + nombreU + "'", null);
 
                 if (cursor.moveToFirst()) {
                     do {
-                        nom = cursor.getString(0);
+                        email = cursor.getString(0);
                         con = cursor.getString(1);
                         tipo = cursor.getString(2);
+                        name = cursor.getString(3);
+                        apellido = cursor.getString(4);
+
 
                         //VERIFICA SI LOS DATOS INGRESADOS CONCUERDAN CON LOS OBTENIDOS DE LA TABLA USUARIOS
-                        if(nombreU.equals(nom) && contra.equals(con))
+                        if(nombreU.equals(email) && contra.equals(con))
                         {
                             //ACTIVAR SESION
                             SharedPreferences preSesion = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = preSesion.edit();
                             editor.putString("sesion", tipo);
-                            editor.putString("perfil", nombreU);
+                            editor.putString("perfil", name);
 
                             if (tipo.equals("1")){//VENDEDOR
                                 //GUARDAR PERFIL

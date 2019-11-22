@@ -22,9 +22,11 @@ import java.util.List;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    EditText txtUser;
+    EditText txtUserEmail;
     EditText txtCon;
     Spinner spnOpcion;
+    EditText txtName;
+    EditText txtApellido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,9 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
     private void InicializarControles() {
-        txtUser = (EditText)findViewById(R.id.editUser);
+        txtName = (EditText)findViewById(R.id.ediNameUser);
+        txtApellido=(EditText)findViewById(R.id.ediLastNameUser);
+        txtUserEmail = (EditText)findViewById(R.id.editUser);
         txtCon = (EditText)findViewById(R.id.editCon);
         spnOpcion = (Spinner)findViewById(R.id.spnOpcion);
     }
@@ -58,37 +62,46 @@ public class RegistroActivity extends AppCompatActivity {
 
         SQLiteDatabase db = userDB.getWritableDatabase();
 
-        String us = txtUser.getText().toString();
+        String us = txtUserEmail.getText().toString();
         String co = txtCon.getText().toString();
+        String name = txtName.getText().toString();
+        String apellido =txtApellido.getText().toString();
         int opcion = spnOpcion.getSelectedItemPosition();
         String tipo = String.valueOf(opcion);
 
-        if(us.trim().equalsIgnoreCase(""))
-        {
-            Toast.makeText(this, "Por favor ingrese su nombre de usuario!", Toast.LENGTH_LONG).show();
-        }
-        else if(co.trim().equalsIgnoreCase(""))
-        {
-            Toast.makeText(this, "Por favor ingrese una contraseña válida!", Toast.LENGTH_LONG).show();
-        }
-        else if((tipo.compareTo("0") == 0)) {
-            Toast.makeText(this, "Por favor ingrese el tipo de usuario!", Toast.LENGTH_LONG).show();
-        }
-        else {
-            if (db != null) {
-                try {
-                    db.execSQL("INSERT INTO usuariosR (nombre, contra, tipo) " + "VALUES ('" + us + "', '" + co + "', '" + tipo + "')");
-                    Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_LONG).show();
-                    Intent z = new Intent(this, MainActivity.class);
-                    startActivity(z);
-                    finish();
-                } catch (Exception e) {
-                    Toast.makeText(this, "El nombre de usuario ya existe!", Toast.LENGTH_LONG).show();
-                } finally {
-                    db.close();
+
+        if(name.trim().equalsIgnoreCase("")){
+            Toast.makeText(this, "Por favor ingrese su Nombre de usuario!", Toast.LENGTH_LONG).show();
+        }else
+            if(apellido.trim().equalsIgnoreCase("")){
+                Toast.makeText(this, "Por favor ingrese su Apellido de usuario!", Toast.LENGTH_LONG).show();
+            }else
+                if(us.trim().equalsIgnoreCase("")){
+                    Toast.makeText(this, "Por favor ingrese su Email de usuario!", Toast.LENGTH_LONG).show();
                 }
-            }
-        }
+                else
+                    if(co.trim().equalsIgnoreCase("")){
+                    Toast.makeText(this, "Por favor ingrese una contraseña válida!", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                        if((tipo.compareTo("0") == 0)) {
+                        Toast.makeText(this, "Por favor ingrese el tipo de usuario!", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            if (db != null) {
+                                try {
+                                    db.execSQL("INSERT INTO usuariosR (email, contra, tipo,nombre,apellido) " + "VALUES ('" + us + "', '" + co + "', '" + tipo + "' , '"+ name +"','"+apellido+"')");
+                                    Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_LONG).show();
+                                    Intent z = new Intent(this, MainActivity.class);
+                                    startActivity(z);
+                                    finish();
+                                } catch (Exception e) {
+                                    Toast.makeText(this, "El nombre de usuario ya existe!", Toast.LENGTH_LONG).show();
+                                } finally {
+                                    db.close();
+                                }
+                            }
+                        }
 
     }
 
