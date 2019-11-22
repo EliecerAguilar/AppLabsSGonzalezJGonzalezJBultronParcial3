@@ -36,10 +36,10 @@ public class UsuarioAdapterView extends ArrayAdapter<Usuarios> {
         String strTipo = opciones.get(position).getTipo();
         switch (strTipo){
             case "1":
-                txtTipo.setText("Comprador");
+                txtTipo.setText("Vendedor");
                 break;
             case  "2":
-                txtTipo.setText("Vendedor");
+                txtTipo.setText("Comprador");
                 break;
             case "3":
                     txtTipo.setText("Supervisor");

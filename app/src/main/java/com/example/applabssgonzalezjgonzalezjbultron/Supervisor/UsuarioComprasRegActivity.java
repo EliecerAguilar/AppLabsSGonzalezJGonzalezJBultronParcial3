@@ -20,14 +20,16 @@ public class UsuarioComprasRegActivity extends AppCompatActivity {
 
     private void barraDeMenu() {
         //Obtener perfil con sesion iniciada
-        SharedPreferences prePerfil = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-        String perfil = prePerfil.getString("perfil","Invitado");
-        String tipoP = prePerfil.getString("tipoP","Invitado");
+
+        String perfil = getIntent().getStringExtra("name").toString();
+        String tipoP = getIntent().getStringExtra("tipo").toString();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(perfil);
         actionBar.setSubtitle(tipoP);
     }
+
+
 
 }

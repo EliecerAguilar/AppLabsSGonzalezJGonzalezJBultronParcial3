@@ -57,13 +57,35 @@ public class SupervisorActivity extends AppCompatActivity {
         spnTipoCampo();
         listUsuariosS = (ListView)findViewById(R.id.ListUsuariosSuper);
         this.LoadListViewTemplate();
+        final Intent is = new Intent(this, UsuarioComprasRegActivity.class);;
 
         listUsuariosS.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 String idEmailUsr =((Usuarios) a.getItemAtPosition(position)).getEmail();
+                String nameUsr =((Usuarios) a.getItemAtPosition(position)).getNombre();
+                String tipoUsr =((Usuarios) a.getItemAtPosition(position)).getTipo();
+
                 //Toast.makeText(SupervisorActivity.this, "Opción seleccionada: " + opcionSeleccionada, Toast.LENGTH_LONG).show();
 
+                switch (tipoUsr){
+                    case "1":
+                        tipoUsr="Vendedor";
+                        break;
+                    case "2":
+                        tipoUsr="Comprador";
+                        break;
+                    case "3":
+                        tipoUsr="Supervisor";
+                        break;
+                        default:
+                            tipoUsr="Invitado";
+                }
+                // guardar datos del usuario para el actioBar y consultar la base de datos con el ID
+                is.putExtra("name",nameUsr);
+                is.putExtra("tipo",tipoUsr);
+                is.putExtra("email",idEmailUsr);
 
+                startActivity(is);
 
             }
         });
@@ -235,9 +257,9 @@ public void BuscarUsuario(View view){
     @Override
     protected void onPause() {
         super.onPause();
-        cerrarS();
+        /*cerrarS();
         Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
+        startActivity(i);*/
     }
 
     @Override
