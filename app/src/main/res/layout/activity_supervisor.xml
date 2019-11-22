@@ -38,20 +38,6 @@
         android:layout_toRightOf="@id/spnTipoCampo"
         android:layout_marginTop="15dp"/>
 
-    <Button
-        android:id="@+id/btnBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/spnTipoUser"
-        android:text="@string/strBuscar"
-        android:textStyle="normal"
-        android:textSize="14sp"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/estilobotones"
-        android:onClick="BuscarUsuario"
-        />
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -60,7 +46,13 @@
         android:id="@+id/ListUsuariosSuper"
         />
 
-
+    <ImageButton
+        android:id="@+id/imgBtnBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/search2"
+        android:layout_toRightOf="@id/spnTipoUser"
+        android:onClick="BuscarUsuario"/>
 
 
 </RelativeLayout>

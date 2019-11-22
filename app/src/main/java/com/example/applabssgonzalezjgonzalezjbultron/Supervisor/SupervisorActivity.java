@@ -139,7 +139,7 @@ public class SupervisorActivity extends AppCompatActivity {
     }
 
 
-public void BuscarUsuario(){
+public void BuscarUsuario(View view){
 
         String opcCampo = spnParam.getSelectedItem().toString();
         int opcTipoUser =spnTipoUser.getSelectedItemPosition();
